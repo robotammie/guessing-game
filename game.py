@@ -27,11 +27,9 @@ def play_game():
 
                 if guess == secret_number:
                     score = len(numbers_guessed)
-                    print best_score
                     if best_score == None or score < best_score:
                         best_score = score
                     print "Congratulations, you guessed my number in %d tries!" % (score)
-                    print best_score
                     break
                 elif guess > secret_number:
                     print "Your guess is too high, try again."
@@ -45,7 +43,7 @@ def play_game():
     if play_again == 'y' or play_again == 'yes':
         play_game()
     else:
-        print "Thank you for playing!"
+        print "Thank you for playing! Your best score was %d!" % (best_score)
         sys.exit()
 
 
