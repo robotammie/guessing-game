@@ -12,15 +12,22 @@ numbers_guessed = []
 
 while True:
     guess = int(raw_input("Enter your guess: "))
-    numbers_guessed = numbers_guessed + [guess]
-    # print numbers_guessed
+    print numbers_guessed
 
-    if guess == secret_number:
-        print "Congratulations, you guessed it the number in %d tries!" % (len(numbers_guessed))
-        break
+    if guess in numbers_guessed:
+        print "You've guessed this number before, try again."
 
-    elif guess > secret_number:
-        print "Your guess is too high, try again."
+    elif guess < 1 or guess > 100:
+        print "That is not a number between 1 and 100, try again."
 
     else:
-        print "Your guess is too low, try again."
+        numbers_guessed = numbers_guessed + [guess]
+        if guess == secret_number:
+            print "Congratulations, you guessed my number in %d tries!" % (len(numbers_guessed))
+            break
+
+        elif guess > secret_number:
+            print "Your guess is too high, try again."
+
+        else:
+            print "Your guess is too low, try again."
