@@ -8,6 +8,7 @@ def play_game():
     secret_number = random.randint(1, 100)
     print secret_number
     numbers_guessed = []
+    global best_score
 
     while True:
         try:
@@ -25,7 +26,12 @@ def play_game():
 
 
                 if guess == secret_number:
-                    print "Congratulations, you guessed my number in %d tries!" % (len(numbers_guessed))
+                    score = len(numbers_guessed)
+                    print best_score
+                    if best_score == None or score < best_score:
+                        best_score = score
+                    print "Congratulations, you guessed my number in %d tries!" % (score)
+                    print best_score
                     break
                 elif guess > secret_number:
                     print "Your guess is too high, try again."
@@ -36,9 +42,10 @@ def play_game():
             print "Please try again with an integer between 1 and 100."
 
     play_again = raw_input("Would you like to play again? y/n ")
-    if play_again == 'y':
+    if play_again == 'y' or play_again == 'yes':
         play_game()
     else:
+        print "Thank you for playing!"
         sys.exit()
 
 
@@ -46,5 +53,6 @@ def play_game():
 print "Hello, welcome to the Guessing Game!"
 name = raw_input("What is your name? ")
 print "Hello, %s!" % (name)
+best_score = None
 play_game()
 
